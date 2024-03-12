@@ -21,5 +21,6 @@
   "AcceptsFeedback": true,  
   "DownloadLinkInstall": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip",
   "DownloadLinkUpdate": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip",
-  "DownloadLinkTesting":"https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip"
+  "DownloadLinkTesting":"https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip",
+  "IconUrl": "https://raw.githubusercontent.com/Sebane1/RoleplayingVoiceDalamud/master/icon.png"
 }
