@@ -1,25 +1,26 @@
-﻿using Dalamud.Game.Command;
+using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using System.IO;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
-using SamplePlugin.Windows;
+using SpinTheWheel.Windows;
 
-namespace SamplePlugin
+namespace SpinTheWheel
 {
     public sealed class Plugin : IDalamudPlugin
     {
-        public string Name => "Sample Plugin";
-        private const string CommandName = "/pmycommand";
+        public string Name => "Spin the Wheel";
+        private const string SpinCommand = "/stw";
 
         private DalamudPluginInterface PluginInterface { get; init; }
         private ICommandManager CommandManager { get; init; }
         public Configuration Configuration { get; init; }
-        public WindowSystem WindowSystem = new("SamplePlugin");
+        public WindowSystem WindowSystem = new("Spin the Wheel");
 
         private ConfigWindow ConfigWindow { get; init; }
-        private MainWindow MainWindow { get; init; }
+   
+        private SpinWindow SpinWindow { get; init; }
 
         public Plugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
@@ -31,19 +32,19 @@ namespace SamplePlugin
             this.Configuration = this.PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
             this.Configuration.Initialize(this.PluginInterface);
 
-            // you might normally want to embed resources and load them from the manifest stream
-            var imagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "goat.png");
-            var goatImage = this.PluginInterface.UiBuilder.LoadImage(imagePath);
 
             ConfigWindow = new ConfigWindow(this);
-            MainWindow = new MainWindow(this, goatImage);
+    
+            SpinWindow = new SpinWindow(this);
             
             WindowSystem.AddWindow(ConfigWindow);
-            WindowSystem.AddWindow(MainWindow);
 
-            this.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
+            WindowSystem.AddWindow(SpinWindow);
+
+
+            this.CommandManager.AddHandler(SpinCommand, new CommandInfo(OnSpinCommand)
             {
-                HelpMessage = "A useful message to display in /xlhelp"
+                HelpMessage = "Display the Spin Wheel Window"
             });
 
             this.PluginInterface.UiBuilder.Draw += DrawUI;
@@ -55,15 +56,19 @@ namespace SamplePlugin
             this.WindowSystem.RemoveAllWindows();
             
             ConfigWindow.Dispose();
-            MainWindow.Dispose();
+
+            SpinWindow.Dispose();
             
-            this.CommandManager.RemoveHandler(CommandName);
+
+            this.CommandManager.RemoveHandler(SpinCommand);
         }
 
-        private void OnCommand(string command, string args)
+
+        private void OnSpinCommand(string command, string args)
         {
             // in response to the slash command, just display our main ui
-            MainWindow.IsOpen = true;
+            SpinWindow.IsOpen = true;
+            
         }
 
         private void DrawUI()
