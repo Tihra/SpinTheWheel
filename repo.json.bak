@@ -19,5 +19,7 @@
   "LoadPriority": 0,
   "Punchline": "A quick little plugin to help with contests, and giveaways.",
   "AcceptsFeedback": true,  
-  "DownloadLinkInstall": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip"
+  "DownloadLinkInstall": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip",
+  "DownloadLinkUpdate": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip",
+  "DownloadLinkTesting":"https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip"
 }
