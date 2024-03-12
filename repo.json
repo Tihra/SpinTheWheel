@@ -1,5 +1,5 @@
-{
-  "Author": ["Tihra"],
+[{
+  "Author": "Tihra",
   "Name": "Spin the Wheel",
   "InternalName": "SamplePlugin",
   "AssemblyVersion": "0.0.0.1",
@@ -16,4 +16,4 @@
   "DownloadLinkUpdate": "https://github.com/Tihra/SpinTheWheel/files/14569534/latest.zip",
   "DownloadLinkTesting":"https://github.com/Tihra/SpinTheWheel/files/14569534/latest.zip",
   "IconUrl": "https://raw.githubusercontent.com/Sebane1/RoleplayingVoiceDalamud/master/icon.png"
-}
+}]
