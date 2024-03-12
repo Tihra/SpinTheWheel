@@ -1,12 +1,14 @@
 {
-  "Author": "your name here",
-  "Name": "Sample Plugin",
-  "Punchline": "A short one-liner that shows up in /xlplugins.",
-  "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
+  "Author": "Tihra",
+  "Name": "Spin the Wheel",
+  "Punchline": "A quick little plugin to help with contests, and giveaways.",
+  "Description": "",
   "ApplicableVersion": "any",
   "Tags": [
-    "sample",
+    "spin",
+	"the",
+	"wheel",
     "plugin",
-    "goats"
+	"contest"
   ]
 }

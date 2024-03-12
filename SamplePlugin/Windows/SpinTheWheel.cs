@@ -12,18 +12,12 @@ public class SpinWindow : Window, IDisposable
 {
     private Plugin Plugin;
 
-    private List<Wheel> Wheels;
-
-
-    private string result ="";
-
-    private Random random;
+    private List<Wheel> wheels;
 
     private int inputWheelCount = 1;
 
-    private int inputSeed = 0;
-    private string inputOptions = "";
-    private bool inputUseSeed = false;
+
+    private List<SpinnerWindow> spinnerWindows;
 
     public SpinWindow(Plugin plugin) : base(
         "Spin the Wheel", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
@@ -34,72 +28,30 @@ public class SpinWindow : Window, IDisposable
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
 
-    
+        wheels = new List<Wheel>();
+        spinnerWindows = new List<SpinnerWindow>();
+
+
+
         this.Plugin = plugin;
-
+        
     }
 
-    public string ExecuteSpin()
-    {
-        inputOptions.Replace(" ", "");
-        string[] brokenstring = inputOptions.Split(',');
 
-        return brokenstring[DevSpin(0, brokenstring.Length)];
-    }
-    private int DevSpin(int min, int max)
-    {
-
-        if (inputUseSeed)
-        {
-            random = new Random(inputSeed);
-        }
-        else
-        {
-            random = new Random();
-        }
-
-        int resultListIndex = -1;        
-
-        resultListIndex = random.Next(min,max);
-
-        return resultListIndex;
-    }
     public void Dispose()
     {
     }
 
     public override void Draw()
     {
-
-        if (ImGui.InputInt("Wheel Count", ref inputWheelCount,1,1))
+        if (ImGui.Button("Create Wheel"))
         {
-            //count changed, clamp min max
+            spinnerWindows.Add(new SpinnerWindow(Plugin));
+            spinnerWindows[spinnerWindows.Count - 1].WindowName = $"Spinner {spinnerWindows.Count}";
 
-            if (inputWheelCount < 1) inputWheelCount = 1;
-            if (inputWheelCount > 5) inputWheelCount = 5;
+            Plugin.WindowSystem.AddWindow(spinnerWindows[spinnerWindows.Count-1]);
+            spinnerWindows[spinnerWindows.Count-1].IsOpen = true;
         }
-
-        ImGui.Checkbox("Use seed ", ref inputUseSeed);
-
-        if (inputUseSeed)
-        {
-            ImGui.InputInt("Seed", ref inputSeed);
-        }        
-
-        if (ImGui.InputTextWithHint("Options", "Separate entries with a comma ( , )", ref inputOptions, 1024))
-        {
-
-        }
-
-        if (ImGui.Button("Spin"))
-        {
-            result = ExecuteSpin();
-        }
-
-
-        ImGui.Spacing();
-        ImGui.Text($"Result: {result}.");
-        ImGui.Spacing();
 
     }
 
