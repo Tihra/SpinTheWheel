@@ -1,0 +1,23 @@
+{
+  "Author": "Tihra",
+  "Name": "Spin the Wheel",
+  "InternalName": "SamplePlugin",
+  "AssemblyVersion": "0.0.0.1",
+  "Description": "",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "spin",
+    "the",
+    "wheel",
+    "plugin",
+    "contest"
+  ],
+  "DalamudApiLevel": 9,
+  "LoadRequiredState": 0,
+  "LoadSync": false,
+  "CanUnloadAsync": false,
+  "LoadPriority": 0,
+  "Punchline": "A quick little plugin to help with contests, and giveaways.",
+  "AcceptsFeedback": true,  
+  "DownloadLinkInstall": "https://github.com/Tihra/SpinTheWheel/releases/download/alpha/latest.zip"
+}
